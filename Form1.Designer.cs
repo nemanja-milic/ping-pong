@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            pictureBox1 = new PictureBox();
+            pictureBoxPlayerA = new PictureBox();
             BallPic = new PictureBox();
-            pictureBox4 = new PictureBox();
+            pictureBoxPlayerB = new PictureBox();
             UpdateGame = new System.Windows.Forms.Timer(components);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BallPic).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerB).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBoxPlayerA
             // 
-            pictureBox1.BackColor = SystemColors.ActiveCaption;
-            pictureBox1.Location = new Point(11, 187);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(35, 149);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pictureBoxPlayerA.BackColor = SystemColors.ActiveCaption;
+            pictureBoxPlayerA.Location = new Point(11, 187);
+            pictureBoxPlayerA.Name = "pictureBoxPlayerA";
+            pictureBoxPlayerA.Size = new Size(35, 149);
+            pictureBoxPlayerA.TabIndex = 0;
+            pictureBoxPlayerA.TabStop = false;
             // 
             // BallPic
             // 
@@ -57,14 +57,14 @@
             BallPic.TabIndex = 2;
             BallPic.TabStop = false;
             // 
-            // pictureBox4
+            // pictureBoxPlayerB
             // 
-            pictureBox4.BackColor = SystemColors.ActiveCaption;
-            pictureBox4.Location = new Point(1104, 187);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(35, 149);
-            pictureBox4.TabIndex = 3;
-            pictureBox4.TabStop = false;
+            pictureBoxPlayerB.BackColor = SystemColors.ActiveCaption;
+            pictureBoxPlayerB.Location = new Point(1104, 187);
+            pictureBoxPlayerB.Name = "pictureBoxPlayerB";
+            pictureBoxPlayerB.Size = new Size(35, 149);
+            pictureBoxPlayerB.TabIndex = 3;
+            pictureBoxPlayerB.TabStop = false;
             // 
             // UpdateGame
             // 
@@ -77,24 +77,26 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1151, 611);
-            Controls.Add(pictureBox4);
+            Controls.Add(pictureBoxPlayerB);
             Controls.Add(BallPic);
-            Controls.Add(pictureBox1);
+            Controls.Add(pictureBoxPlayerA);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "GameForm";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            KeyDown += MovePlayers;
+            KeyUp += ResetPlayerMovings;
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerA).EndInit();
             ((System.ComponentModel.ISupportInitialize)BallPic).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerB).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox pictureBoxPlayerA;
         private PictureBox BallPic;
-        private PictureBox pictureBox4;
+        private PictureBox pictureBoxPlayerB;
         private System.Windows.Forms.Timer UpdateGame;
     }
 }
