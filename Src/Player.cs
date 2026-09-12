@@ -8,25 +8,27 @@ namespace Pong.Src
 {
     internal class Player
     {
-        private PictureBox PlayerPicBox;
+        public PictureBox PicBox;
         public bool MovingUp { get; private set; } = false;
         public bool MovingDown { get; private set; } = false;
 
         private int Speed = 30;
 
+        private int SpaceFromForm = 40;
+
         public Player(PictureBox picBox) 
         {
-            PlayerPicBox = picBox;
+            PicBox = picBox;
         }
 
         public void MoveUp()
         {
-            PlayerPicBox.Top = PlayerPicBox.Top - Speed;
+            PicBox.Top = PicBox.Top - Speed;
         }
 
         public void MoveDown()
         {
-            PlayerPicBox.Top = PlayerPicBox.Top + Speed;
+            PicBox.Top = PicBox.Top + Speed;
         }
 
         public void StartMovingUp()
@@ -48,5 +50,24 @@ namespace Pong.Src
         {
             MovingDown = false;
         }
+
+        public bool CanGoUp(Form form)
+        {
+            if(PicBox.Top <= SpaceFromForm)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool CanGoDown(Form form)
+        {
+            if (PicBox.Bottom >= form.ClientSize.Height - SpaceFromForm)
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

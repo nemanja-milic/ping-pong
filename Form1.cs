@@ -49,22 +49,23 @@ namespace Pong
 
         private void MovePlayers(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+
+            if (e.KeyCode == Keys.Up && PlayerA.CanGoUp(this))
             {
                 PlayerA.MoveUp();
             }
 
-            if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Down && PlayerA.CanGoDown(this))
             {
                 PlayerA.MoveDown();
             }
 
-            if (e.KeyCode == Keys.W)
+            if (e.KeyCode == Keys.W && PlayerB.CanGoUp(this))
             {
                 PlayerB.MoveUp();
             }
 
-            if (e.KeyCode == Keys.S)
+            if (e.KeyCode == Keys.S && PlayerB.CanGoUp(this))
             {
                 PlayerB.MoveDown();
             }
