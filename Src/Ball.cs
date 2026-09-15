@@ -10,13 +10,17 @@ namespace Pong.Src
     {
         private PictureBox BallPicture;
         public int SpeedByPxPerSeconds = 10;
-        private int velocityX = +15;
+        private int velocityX = -15;
         private int velocityY = +15;
         private Form MainForm;
-        public Ball(PictureBox BallPic, Form MainForm) 
+        private Player PlayerA;
+        private Player PlayerB;
+        public Ball(PictureBox BallPic, Form MainForm, Player PlayerA, Player PlayerB) 
         {
             BallPicture = BallPic;
             this.MainForm = MainForm;
+            this.PlayerB = PlayerB;
+            this.PlayerA = PlayerA;
         }
 
         public void MovingController()
@@ -35,14 +39,32 @@ namespace Pong.Src
             if(BallPicture.Top <= 0 && velocityY < 0)
             {
                 velocityY = velocityY * -1;
-                velocityX = velocityX * -1;
+                velocityX = velocityX * +1;
             }
             
             // down wall
             if(BallPicture.Bottom >= (MainForm.Height - BallPicture.Height) && velocityY > 0)
             {
                 velocityY = velocityY * -1;
-                velocityX = velocityX * -1;
+                velocityX = velocityX * +1;
+            }
+
+            // left player
+            if(BallPicture.Left <= PlayerA.PicBox.Right)
+            {
+                // which part of player did it hit
+                if(PlayerA.HitTail(BallPicture.Top))
+                {
+                    velocityY = velocityY * +1;
+                    velocityX = velocityX * -1;
+                }
+
+                else if (PlayerA.HitCenter(BallPicture.Top))
+                {
+                    velocityX = velocityX * -1;
+                    velocityY = 0;
+                }
+
             }
         }
         public void MoveVertical()

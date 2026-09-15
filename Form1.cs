@@ -11,11 +11,11 @@ namespace Pong
         public GameForm()
         {
             InitializeComponent();
-            BallController = new Ball(BallPic, this);
 
             PlayerA = new Player(pictureBoxPlayerA);
             PlayerB = new Player(pictureBoxPlayerB);
 
+            BallController = new Ball(BallPic, this, PlayerA, PlayerB);
         }
 
         private void Form1_Load(object sender, EventArgs e)
