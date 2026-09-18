@@ -41,18 +41,20 @@
             // pictureBoxPlayerA
             // 
             pictureBoxPlayerA.BackColor = SystemColors.ActiveCaption;
-            pictureBoxPlayerA.Location = new Point(11, 187);
+            pictureBoxPlayerA.Location = new Point(12, 189);
+            pictureBoxPlayerA.Margin = new Padding(3, 2, 3, 2);
             pictureBoxPlayerA.Name = "pictureBoxPlayerA";
-            pictureBoxPlayerA.Size = new Size(35, 149);
+            pictureBoxPlayerA.Size = new Size(20, 120);
             pictureBoxPlayerA.TabIndex = 0;
             pictureBoxPlayerA.TabStop = false;
             // 
             // BallPic
             // 
             BallPic.Image = Properties.Resources.pong_ball_removebg_preview;
-            BallPic.Location = new Point(560, 221);
+            BallPic.Location = new Point(483, 223);
+            BallPic.Margin = new Padding(3, 2, 3, 2);
             BallPic.Name = "BallPic";
-            BallPic.Size = new Size(72, 63);
+            BallPic.Size = new Size(25, 25);
             BallPic.SizeMode = PictureBoxSizeMode.StretchImage;
             BallPic.TabIndex = 2;
             BallPic.TabStop = false;
@@ -60,9 +62,10 @@
             // pictureBoxPlayerB
             // 
             pictureBoxPlayerB.BackColor = SystemColors.ActiveCaption;
-            pictureBoxPlayerB.Location = new Point(1104, 187);
+            pictureBoxPlayerB.Location = new Point(923, 189);
+            pictureBoxPlayerB.Margin = new Padding(3, 2, 3, 2);
             pictureBoxPlayerB.Name = "pictureBoxPlayerB";
-            pictureBoxPlayerB.Size = new Size(35, 149);
+            pictureBoxPlayerB.Size = new Size(20, 120);
             pictureBoxPlayerB.TabIndex = 3;
             pictureBoxPlayerB.TabStop = false;
             // 
@@ -73,14 +76,15 @@
             // 
             // GameForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(1151, 611);
+            ClientSize = new Size(984, 561);
             Controls.Add(pictureBoxPlayerB);
             Controls.Add(BallPic);
             Controls.Add(pictureBoxPlayerA);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "GameForm";
             Text = "Form1";
             Load += Form1_Load;

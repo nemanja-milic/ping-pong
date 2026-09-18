@@ -35,8 +35,6 @@ namespace Pong.Src
             }
         }
 
-        private int TailEnd = 0;
-
 
         public Player(PictureBox picBox) 
         {
@@ -109,6 +107,17 @@ namespace Pong.Src
             int fromMiddleEndToTopForm = PicBox.Top + MiddleEnd;
             int fromMiddleStartToTopForm = PicBox.Top + MiddleStart;
             if (ballCenterY >= fromMiddleStartToTopForm && fromMiddleEndToTopForm > ballCenterY)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool HitHead(int ballCenterY)
+        {
+            int fromMiddleStartToTopForm = PicBox.Top + MiddleStart;
+            if (fromMiddleStartToTopForm > ballCenterY && PicBox.Top > ballCenterY)
             {
                 return true;
             }
