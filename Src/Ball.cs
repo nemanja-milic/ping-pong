@@ -15,7 +15,7 @@ namespace Pong.Src
         private Form MainForm;
         private Player PlayerA;
         private Player PlayerB;
-        int ballSpeed = 15;
+        int ballSpeed = 30;
         public Ball(PictureBox BallPic, Form MainForm, Player PlayerA, Player PlayerB) 
         {
             BallPicture = BallPic;
@@ -93,6 +93,10 @@ namespace Pong.Src
 
             if (PlayerA.HitHead(BallPicture.Top))
             {
+                if (velocityY == 0)
+                {
+                    velocityY = ballSpeed;
+                }
                 Console.WriteLine("hit head");
                 velocityX = Math.Abs(velocityX);
                 velocityY = velocityY * -1;
@@ -125,6 +129,10 @@ namespace Pong.Src
 
             if (PlayerA.HitHead(BallPicture.Top))
             {
+                if (velocityY == 0)
+                {
+                    velocityY = ballSpeed;
+                }
                 velocityX = Math.Abs(velocityX);
                 velocityY = velocityY * -1;
                 Console.WriteLine("Hit head");
@@ -145,8 +153,8 @@ namespace Pong.Src
                 {
                     velocityY = ballSpeed;
                 }
-                velocityY = velocityY * -1;
-                velocityX = velocityX * -1;
+                velocityY = Math.Abs(velocityY);
+                velocityX = -Math.Abs(velocityX);
             }
 
             

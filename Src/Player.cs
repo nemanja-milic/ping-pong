@@ -106,7 +106,7 @@ namespace Pong.Src
         {
             int fromMiddleEndToTopForm = PicBox.Top + MiddleEnd;
             int fromMiddleStartToTopForm = PicBox.Top + MiddleStart;
-            if (ballCenterY >= fromMiddleStartToTopForm && fromMiddleEndToTopForm >= ballCenterY)
+            if (ballCenterY > fromMiddleStartToTopForm && fromMiddleEndToTopForm > ballCenterY)
             {
                 return true;
             }
@@ -117,7 +117,7 @@ namespace Pong.Src
         public bool HitHead(int ballCenterY)
         {
             int fromMiddleStartToTopForm = PicBox.Top + MiddleStart;
-            if (fromMiddleStartToTopForm >= ballCenterY && PicBox.Top >= ballCenterY)
+            if (fromMiddleStartToTopForm >= ballCenterY && PicBox.Top <= ballCenterY)
             {
                 return true;
             }
