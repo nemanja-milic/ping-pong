@@ -56,6 +56,7 @@ namespace Pong.Src
             {
                 PlayerBCollision();
             }
+            Console.WriteLine(velocityX + ":" + velocityY);
         }
 
         private void UpWallCollision()
@@ -89,22 +90,25 @@ namespace Pong.Src
 
         private void PlayerACollision()
         {
-            if (PlayerA.HitCenter(BallPicture.Top))
-            {
-                velocityX = velocityX * -1;
-                velocityY = 0;
-                return;
-            }
 
-            if(PlayerA.HitHead(BallPicture.Top))
+            if (PlayerA.HitHead(BallPicture.Top))
             {
+                Console.WriteLine("hit head");
                 velocityX = Math.Abs(velocityX);
                 velocityY = velocityY * -1;
             }
 
+            if (PlayerA.HitCenter(BallPicture.Top))
+            {
+                Console.WriteLine("Hit center");
+                velocityX = Math.Abs(velocityX);
+                velocityY = 0;
+                return;
+            }
 
             if (PlayerA.HitTail(BallPicture.Top))
             {
+                Console.WriteLine("hit tail");
                 if (velocityY == 0)
                 {
                     velocityY = ballSpeed;
@@ -118,8 +122,25 @@ namespace Pong.Src
 
         private void PlayerBCollision()
         {
+
+            if (PlayerA.HitHead(BallPicture.Top))
+            {
+                velocityX = Math.Abs(velocityX);
+                velocityY = velocityY * -1;
+                Console.WriteLine("Hit head");
+            }
+
+            if (PlayerB.HitCenter(BallPicture.Top))
+            {
+                Console.WriteLine("hit center");
+                velocityX = -Math.Abs(velocityX);
+                velocityY = 0;
+            }
+
             if (PlayerB.HitTail(BallPicture.Top))
             {
+
+                Console.WriteLine("Hit tail");
                 if (velocityY == 0)
                 {
                     velocityY = ballSpeed;
@@ -128,11 +149,7 @@ namespace Pong.Src
                 velocityX = velocityX * -1;
             }
 
-            if (PlayerB.HitCenter(BallPicture.Top))
-            {
-                velocityX = velocityX * -1;
-                velocityY = 0;
-            }
+            
         }
 
         public void MoveVertical()
