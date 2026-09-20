@@ -7,15 +7,20 @@ namespace Pong
         private Ball BallController;
         private Player PlayerA;
         private Player PlayerB;
+        private GameController GameController;
 
         public GameForm()
         {
+            KeyPreview = true;
             InitializeComponent();
 
             PlayerA = new Player(pictureBoxPlayerA);
             PlayerB = new Player(pictureBoxPlayerB);
 
+            GameController = new GameController();
+
             BallController = new Ball(BallPic, this, PlayerA, PlayerB);
+            BallController.GoalScored += HandleGoal;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -27,11 +32,11 @@ namespace Pong
         {
             BallController.MovingController();
 
-            if (PlayerA.MovingUp) 
+            if (PlayerA.MovingUp)
             {
                 PlayerA.MoveUp();
             }
-            else if(PlayerA.MovingDown)
+            else if (PlayerA.MovingDown)
             {
                 PlayerA.MoveDown();
             }
@@ -74,7 +79,7 @@ namespace Pong
 
         private void ResetPlayerMovings(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Up)
             {
                 PlayerA.StopMovingUp();
             }
@@ -93,6 +98,31 @@ namespace Pong
             {
                 PlayerB.StopMovingDown();
             }
+        }
+
+        private void HandleGoal(PlayerSide playerSide)
+        {
+            if (playerSide == PlayerSide.PlayerA)
+            {
+                GameController.AddScoreGoalA();
+                PlayerAScoreLbl.Text = GameController.PlayerAScore.ToString();
+            }
+            else if (playerSide == PlayerSide.PlayerB)
+            {
+                GameController.AddScoreGoalB();
+                PlayerBScoreLbl.Text = GameController.PlayerBScore.ToString();
+            }
+            UpdateGame.Stop();
+            GoalLbl.Visible = true;
+            ReadyBtn.Visible = true;
+        }
+
+        private void StartAgainGame(object sender, EventArgs e)
+        {
+            BallController.ResetPosition();
+            GoalLbl.Visible = false;
+            ReadyBtn.Visible = false;
+            UpdateGame.Start();
         }
     }
 }

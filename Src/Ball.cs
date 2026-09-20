@@ -16,6 +16,7 @@ namespace Pong.Src
         private Player PlayerA;
         private Player PlayerB;
         int ballSpeed = 30;
+        public event Action<PlayerSide>? GoalScored;
         public Ball(PictureBox BallPic, Form MainForm, Player PlayerA, Player PlayerB) 
         {
             BallPicture = BallPic;
@@ -56,7 +57,16 @@ namespace Pong.Src
             {
                 PlayerBCollision();
             }
-            Console.WriteLine(velocityX + ":" + velocityY);
+
+            if(BallPicture.Right > MainForm.Width)
+            {
+                GoalScored?.Invoke(PlayerSide.PlayerA);
+            }
+
+            if (BallPicture.Left < 0)
+            {
+                GoalScored?.Invoke(PlayerSide.PlayerB);
+            }
         }
 
         private void UpWallCollision()
@@ -170,6 +180,11 @@ namespace Pong.Src
         {
             int newValueOfX = BallPicture.Location.X + velocityX;
             BallPicture.Location = new Point(newValueOfX, BallPicture.Location.Y);
+        }
+
+        public void ResetPosition()
+        {
+            BallPicture.Location = new Point(MainForm.ClientSize.Width / 2, MainForm.ClientSize.Height / 2);
         }
     }
 }
