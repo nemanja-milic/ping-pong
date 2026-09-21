@@ -16,6 +16,8 @@ namespace Pong.Src
         private Player PlayerA;
         private Player PlayerB;
         int ballSpeed = 30;
+        int TicksBeforeIncreaseSpeed = 100;
+        int CounterOfTicks = 0;
         public event Action<PlayerSide>? GoalScored;
         public Ball(PictureBox BallPic, Form MainForm, Player PlayerA, Player PlayerB) 
         {
@@ -31,12 +33,16 @@ namespace Pong.Src
 
         public void MovingController()
         {
+            Console.WriteLine(ballSpeed);
+            ShouldIncreaseBallSpeed();
+
             CheckCollision();
 
             MoveHorizontally();
 
             MoveVertical();
 
+            CounterOfTicks++;
         }
 
         private void CheckCollision()
@@ -185,6 +191,20 @@ namespace Pong.Src
         public void ResetPosition()
         {
             BallPicture.Location = new Point(MainForm.ClientSize.Width / 2, MainForm.ClientSize.Height / 2);
+        }
+
+        private void ShouldIncreaseBallSpeed()
+        {
+            if(CounterOfTicks == TicksBeforeIncreaseSpeed)
+            {
+                IncreaseBallSpeed();
+                CounterOfTicks = 0;
+            }
+        }
+
+        private void IncreaseBallSpeed()
+        {
+            ballSpeed += 5;
         }
     }
 }
