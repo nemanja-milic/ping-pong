@@ -10,6 +10,8 @@ namespace Pong.Src
     {
         public int PlayerAScore  { get; set; }
         public int PlayerBScore  { get; set; }
+
+        private int WinScore = 5;
         public GameController()
         {
         }
@@ -22,6 +24,26 @@ namespace Pong.Src
         public void AddScoreGoalB()
         {
             PlayerBScore++;
+        }
+
+        public void Reset()
+        {
+            PlayerAScore = 0;
+            PlayerBScore = 0;
+        }
+
+        public bool IsWin()
+        {
+            if(PlayerAScore == WinScore) return true;
+            if (PlayerBScore == WinScore) return true;
+            return false;
+        }
+
+        public string WinnerIs()
+        {
+            if (PlayerAScore == WinScore) return "Player A Winner";
+            if (PlayerBScore == WinScore) return "Player B Winner!";
+            return "No winner for now😀";
         }
     }
 }

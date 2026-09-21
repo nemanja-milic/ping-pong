@@ -113,8 +113,18 @@ namespace Pong
                 PlayerBScoreLbl.Text = GameController.PlayerBScore.ToString();
             }
             UpdateGame.Stop();
-            GoalLbl.Visible = true;
-            ReadyBtn.Visible = true;
+            if (GameController.IsWin())
+            {
+                PlayAgainBtn.Visible = true;
+                WinnerLbl.Text = GameController.WinnerIs();
+                WinnerLbl.Location = new Point((this.ClientSize.Width / 2) - (WinnerLbl.Width / 2), (this.ClientSize.Height / 2) - WinnerLbl.Height);
+                WinnerLbl.Visible = true;
+            }
+            else
+            {
+                GoalLbl.Visible = true;
+                ReadyBtn.Visible = true;
+            }
         }
 
         private void StartAgainGame(object sender, EventArgs e)
@@ -122,6 +132,17 @@ namespace Pong
             BallController.ResetPosition();
             GoalLbl.Visible = false;
             ReadyBtn.Visible = false;
+            UpdateGame.Start();
+        }
+
+        private void RestartGame(object sender, EventArgs e)
+        {
+            PlayAgainBtn.Visible = false;
+            WinnerLbl.Visible = false;
+            GameController.Reset();
+            PlayerAScoreLbl.Text = "0";
+            PlayerBScoreLbl.Text = "0";
+            BallController.ResetPosition();
             UpdateGame.Start();
         }
     }
