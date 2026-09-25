@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            pictureBoxPlayerA = new PictureBox();
-            BallPic = new PictureBox();
             pictureBoxPlayerB = new PictureBox();
+            BallPic = new PictureBox();
+            pictureBoxPlayerA = new PictureBox();
             UpdateGame = new System.Windows.Forms.Timer(components);
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -46,9 +46,11 @@
             ReadyBtn = new Button();
             WinnerLbl = new Label();
             PlayAgainBtn = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerA).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)BallPic).BeginInit();
+            VSComputerBtn = new Button();
+            TwoPlayersBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerB).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BallPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerA).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -58,15 +60,15 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
             // 
-            // pictureBoxPlayerA
+            // pictureBoxPlayerB
             // 
-            pictureBoxPlayerA.BackColor = SystemColors.ActiveCaption;
-            pictureBoxPlayerA.Location = new Point(12, 189);
-            pictureBoxPlayerA.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxPlayerA.Name = "pictureBoxPlayerA";
-            pictureBoxPlayerA.Size = new Size(20, 120);
-            pictureBoxPlayerA.TabIndex = 0;
-            pictureBoxPlayerA.TabStop = false;
+            pictureBoxPlayerB.BackColor = SystemColors.ActiveCaption;
+            pictureBoxPlayerB.Location = new Point(12, 189);
+            pictureBoxPlayerB.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxPlayerB.Name = "pictureBoxPlayerB";
+            pictureBoxPlayerB.Size = new Size(20, 120);
+            pictureBoxPlayerB.TabIndex = 0;
+            pictureBoxPlayerB.TabStop = false;
             // 
             // BallPic
             // 
@@ -79,19 +81,18 @@
             BallPic.TabIndex = 2;
             BallPic.TabStop = false;
             // 
-            // pictureBoxPlayerB
+            // pictureBoxPlayerA
             // 
-            pictureBoxPlayerB.BackColor = SystemColors.MenuHighlight;
-            pictureBoxPlayerB.Location = new Point(923, 189);
-            pictureBoxPlayerB.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxPlayerB.Name = "pictureBoxPlayerB";
-            pictureBoxPlayerB.Size = new Size(20, 120);
-            pictureBoxPlayerB.TabIndex = 3;
-            pictureBoxPlayerB.TabStop = false;
+            pictureBoxPlayerA.BackColor = SystemColors.MenuHighlight;
+            pictureBoxPlayerA.Location = new Point(952, 189);
+            pictureBoxPlayerA.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxPlayerA.Name = "pictureBoxPlayerA";
+            pictureBoxPlayerA.Size = new Size(20, 120);
+            pictureBoxPlayerA.TabIndex = 3;
+            pictureBoxPlayerA.TabStop = false;
             // 
             // UpdateGame
             // 
-            UpdateGame.Enabled = true;
             UpdateGame.Tick += UpdateGameTick;
             // 
             // pictureBox1
@@ -237,12 +238,34 @@
             PlayAgainBtn.Visible = false;
             PlayAgainBtn.Click += RestartGame;
             // 
+            // VSComputerBtn
+            // 
+            VSComputerBtn.Location = new Point(216, 218);
+            VSComputerBtn.Name = "VSComputerBtn";
+            VSComputerBtn.Size = new Size(146, 91);
+            VSComputerBtn.TabIndex = 17;
+            VSComputerBtn.Text = "VS Computer";
+            VSComputerBtn.UseVisualStyleBackColor = true;
+            VSComputerBtn.Click += VSComputerGame;
+            // 
+            // TwoPlayersBtn
+            // 
+            TwoPlayersBtn.Location = new Point(655, 220);
+            TwoPlayersBtn.Name = "TwoPlayersBtn";
+            TwoPlayersBtn.Size = new Size(146, 91);
+            TwoPlayersBtn.TabIndex = 18;
+            TwoPlayersBtn.Text = "Two Players";
+            TwoPlayersBtn.UseVisualStyleBackColor = true;
+            TwoPlayersBtn.Click += StartTwoPlGame;
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(984, 561);
+            Controls.Add(TwoPlayersBtn);
+            Controls.Add(VSComputerBtn);
             Controls.Add(PlayAgainBtn);
             Controls.Add(WinnerLbl);
             Controls.Add(ReadyBtn);
@@ -256,9 +279,9 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
-            Controls.Add(pictureBoxPlayerB);
-            Controls.Add(BallPic);
             Controls.Add(pictureBoxPlayerA);
+            Controls.Add(BallPic);
+            Controls.Add(pictureBoxPlayerB);
             ForeColor = SystemColors.ActiveCaptionText;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
@@ -267,9 +290,9 @@
             Load += Form1_Load;
             KeyDown += MovePlayers;
             KeyUp += ResetPlayerMovings;
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerA).EndInit();
-            ((System.ComponentModel.ISupportInitialize)BallPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerB).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BallPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxPlayerA).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -283,9 +306,9 @@
 
         #endregion
 
-        private PictureBox pictureBoxPlayerA;
-        private PictureBox BallPic;
         private PictureBox pictureBoxPlayerB;
+        private PictureBox BallPic;
+        private PictureBox pictureBoxPlayerA;
         private System.Windows.Forms.Timer UpdateGame;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
@@ -300,5 +323,7 @@
         private Button ReadyBtn;
         private Label WinnerLbl;
         private Button PlayAgainBtn;
+        private Button VSComputerBtn;
+        private Button TwoPlayersBtn;
     }
 }

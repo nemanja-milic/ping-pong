@@ -33,7 +33,10 @@ namespace Pong.Src
 
         public void MovingController()
         {
-            Console.WriteLine(ballSpeed);
+            if(velocityX < 0 && velocityY > 0)
+            {
+                Console.WriteLine(BallPicture.Location.X + " : " + BallPicture.Location.Y);
+            }
             ShouldIncreaseBallSpeed();
 
             CheckCollision();
@@ -106,62 +109,26 @@ namespace Pong.Src
 
         private void PlayerACollision()
         {
-
+            Console.WriteLine("Hello player a collision");
             if (PlayerA.HitHead(BallPicture.Top))
             {
                 if (velocityY == 0)
                 {
                     velocityY = ballSpeed;
                 }
-                Console.WriteLine("hit head");
-                velocityX = Math.Abs(velocityX);
-                velocityY = velocityY * -1;
-            }
-
-            if (PlayerA.HitCenter(BallPicture.Top))
-            {
-                Console.WriteLine("Hit center");
-                velocityX = Math.Abs(velocityX);
-                velocityY = 0;
-                return;
-            }
-
-            if (PlayerA.HitTail(BallPicture.Top))
-            {
-                Console.WriteLine("hit tail");
-                if (velocityY == 0)
-                {
-                    velocityY = ballSpeed;
-                }
-                velocityY = Math.Abs(velocityY);
-                velocityX = Math.Abs(velocityX);
-                return;
-            }
-
-        }
-
-        private void PlayerBCollision()
-        {
-
-            if (PlayerA.HitHead(BallPicture.Top))
-            {
-                if (velocityY == 0)
-                {
-                    velocityY = ballSpeed;
-                }
-                velocityX = Math.Abs(velocityX);
-                velocityY = velocityY * -1;
+                velocityX = Math.Abs(velocityX) * -1;
+                velocityY = Math.Abs(velocityY) * -1;
                 Console.WriteLine("Hit head");
             }
 
-            if (PlayerB.HitCenter(BallPicture.Top))
+            if (PlayerA.HitCenter(BallPicture.Top))
             {
                 Console.WriteLine("hit center");
                 velocityX = -Math.Abs(velocityX);
                 velocityY = 0;
             }
 
-            if (PlayerB.HitTail(BallPicture.Top))
+            if (PlayerA.HitTail(BallPicture.Top))
             {
 
                 Console.WriteLine("Hit tail");
@@ -173,7 +140,41 @@ namespace Pong.Src
                 velocityX = -Math.Abs(velocityX);
             }
 
-            
+        }
+
+        private void PlayerBCollision()
+        {
+            if (PlayerB.HitHead(BallPicture.Top))
+            {
+                if (velocityY == 0)
+                {
+                    velocityY = ballSpeed;
+                }
+                Console.WriteLine("hit head");
+                velocityX = Math.Abs(velocityX);
+                velocityY = Math.Abs(velocityY) *-1;
+            }
+
+            if (PlayerB.HitCenter(BallPicture.Top))
+            {
+                Console.WriteLine("Hit center");
+                velocityX = Math.Abs(velocityX);
+                velocityY = 0;
+                return;
+            }
+
+            if (PlayerB.HitTail(BallPicture.Top))
+            {
+                Console.WriteLine("hit tail");
+                if (velocityY == 0)
+                {
+                    velocityY = ballSpeed;
+                }
+                velocityY = Math.Abs(velocityY);
+                velocityX = Math.Abs(velocityX);
+                return;
+            }
+
         }
 
         public void MoveVertical()

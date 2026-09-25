@@ -28,6 +28,8 @@ namespace Pong
 
         }
 
+
+
         private void UpdateGameTick(object sender, EventArgs e)
         {
             BallController.MovingController();
@@ -54,6 +56,7 @@ namespace Pong
 
         private void MovePlayers(object sender, KeyEventArgs e)
         {
+            // all of this have to be in game controller 
 
             if (e.KeyCode == Keys.Up && PlayerA.CanGoUp(this))
             {
@@ -70,7 +73,7 @@ namespace Pong
                 PlayerB.MoveUp();
             }
 
-            if (e.KeyCode == Keys.S && PlayerB.CanGoUp(this))
+            if (e.KeyCode == Keys.S && PlayerB.CanGoDown(this))
             {
                 PlayerB.MoveDown();
             }
@@ -143,6 +146,18 @@ namespace Pong
             PlayerAScoreLbl.Text = "0";
             PlayerBScoreLbl.Text = "0";
             BallController.ResetPosition();
+            UpdateGame.Start();
+        }
+
+        private void VSComputerGame(object sender, EventArgs e)
+        {
+            // GameController.VSComputer();
+        }
+
+        private void StartTwoPlGame(object sender, EventArgs e)
+        {
+            VSComputerBtn.Visible = false;
+            TwoPlayersBtn.Visible = false;
             UpdateGame.Start();
         }
     }
